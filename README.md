@@ -1,8 +1,7 @@
-
 # LLMDataLens
 
-[![PyPI version](https://badge.fury.io/py/llmdatalens.svg)](https://badge.fury.io/py/llmdatalens)
-[![Python Versions](https://img.shields.io/pypi/pyversions/llmdatalens.svg)](https://pypi.org/project/llmdatalens/)
+[![PyPI version](https://badge.fury.io/py/llm-data-lens.svg)](https://badge.fury.io/py/llm-data-lens)
+[![Python Versions](https://img.shields.io/pypi/pyversions/llm-data-lens.svg)](https://pypi.org/project/llm-data-lens/)
 
 LLMDataLens is a powerful framework for evaluating LLM-based applications with structured output. It provides a flexible and extensible way to assess the performance of language models across various metrics.
 
