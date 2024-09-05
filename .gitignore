@@ -166,6 +166,10 @@ cython_debug/
 
 # Jupyter Notebook
 notebooks/
+experiments/
+test_experiments/
 
 # Zed config
 pyrightconfig.json
+
+
