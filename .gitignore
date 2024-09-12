@@ -172,4 +172,6 @@ test_experiments/
 # Zed config
 pyrightconfig.json
 
+.vscode/
+
 

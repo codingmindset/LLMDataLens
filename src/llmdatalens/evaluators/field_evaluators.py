@@ -77,29 +77,25 @@ class StringFieldEvaluator(FieldEvaluator):
             }
 
         # For complex string fields, use LLM evaluation
-        try:
-            llm_evaluation = self.llm_evaluator.evaluate_relevancy(ground_truth, predicted_value)
-            evaluation_result = json.loads(llm_evaluation)
+        llm_evaluation = self.llm_evaluator.evaluate_relevancy(ground_truth, predicted_value)
 
-            relevancy_score = evaluation_result.get("relevancy_score", 0)
-            is_correct = relevancy_score >= 0.7  # We can adjust this threshold as needed
-
-            return {
-                "correct": is_correct,
-                "predicted": predicted_value,
-                "ground_truth": ground_truth,
-                "relevancy_score": relevancy_score,
-                "reason": evaluation_result.get("reason", ""),
-                "statements": evaluation_result.get("statements", []),
-                "relevant_statements": evaluation_result.get("relevant_statements", [])
-            }
-        except Exception as e:
+        if "error" in llm_evaluation:
             return {
                 "correct": False,
                 "predicted": predicted_value,
                 "ground_truth": ground_truth,
-                "error": f"LLM evaluation failed: {str(e)}"
+                "error": llm_evaluation["error"]
             }
+
+        relevancy_score = llm_evaluation.get("relevancy_score", 0)
+        is_correct = relevancy_score >= 0.8  # We can adjust this threshold as needed
+
+        return {
+            "correct": is_correct,
+            "predicted": predicted_value,
+            "ground_truth": ground_truth,
+            "details": llm_evaluation
+        }
 
 class ArrayFieldEvaluator(FieldEvaluator):
     def evaluate(self, predicted_value: Any, ground_truth: Any) -> Dict[str, Any]:

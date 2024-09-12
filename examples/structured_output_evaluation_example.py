@@ -35,7 +35,7 @@ golden_data = {
 llm_result = golden_data.copy()
 
 # llm result with a different total
-llm_result['total'] = 2004.34
+llm_result['total'] = 2004.43
 llm_result['customer_name'] = 'Acme'    
 
 # Create ground truth
@@ -128,7 +128,7 @@ evaluation_result = evaluator.evaluate()
 
 # Print results
 print("Evaluation Result:")
-print(f"Overall Field Accuracy: {evaluation_result.field_accuracy:.2f}")
+print(f"Overall Field Accuracy: {evaluation_result.overall_accuracy:.2f}")
 print("\nField Results:")
 for field_name, field_result in evaluation_result.field_results.items():
     print(f"  {field_name}: {'Correct' if field_result.correct else 'Incorrect'}")
@@ -168,6 +168,6 @@ if experiment.runs:
     print(f"Run ID: {first_run.id}")
     print(f"Model: {first_run.llm_output.metadata.model_name} (version: {first_run.llm_output.metadata.model_version})")
     print(f"Evaluation Metrics:")
-    print(f"  Field Accuracy: {first_run.evaluation_result.field_accuracy:.2f}")
+    print(f"  Overall Accuracy: {first_run.evaluation_result.overall_accuracy:.2f}")
     for field_name, field_result in first_run.evaluation_result.field_results.items():
         print(f"  {field_name}: {'Correct' if field_result.correct else 'Incorrect'}")

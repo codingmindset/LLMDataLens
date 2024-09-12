@@ -77,13 +77,13 @@ def test_field_result():
 
 def test_evaluation_result():
     result = EvaluationResult(
-        field_accuracy=0.8,
+        overall_accuracy=0.8,
         field_results={
             "field1": FieldResult(correct=True, predicted="value", ground_truth="value"),
             "field2": FieldResult(correct=False, predicted="wrong", ground_truth="right")
         }
     )
-    assert result.field_accuracy == 0.8
+    assert result.overall_accuracy == 0.8
     assert len(result.field_results) == 2
     assert result.field_results["field1"].correct == True
     assert result.field_results["field2"].correct == False
@@ -96,7 +96,7 @@ def test_run():
         ),
         ground_truth=GroundTruth(data={"key": "value"}),
         evaluation_result=EvaluationResult(
-            field_accuracy=1.0,
+            overall_accuracy=1.0,
             field_results={"key": FieldResult(correct=True, predicted="value", ground_truth="value")}
         )
     )

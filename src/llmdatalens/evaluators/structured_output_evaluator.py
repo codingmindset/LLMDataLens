@@ -86,15 +86,15 @@ class StructuredOutputEvaluator(LLMEvaluator):
                 total_correct += 1
             total_fields += 1
 
-        field_accuracy = total_correct / total_fields if total_fields > 0 else 0
+        overall_accuracy = total_correct / total_fields if total_fields > 0 else 0
 
         return EvaluationResult(
-            field_accuracy=field_accuracy,
+            overall_accuracy=overall_accuracy,
             field_results=field_results
         )
 
     def _aggregate_results(self, evaluation_results: List[EvaluationResult]) -> EvaluationResult:
-        total_accuracy = sum(result.field_accuracy for result in evaluation_results)
+        total_accuracy = sum(result.overall_accuracy for result in evaluation_results)
         average_accuracy = total_accuracy / len(evaluation_results) if evaluation_results else 0
 
         aggregated_field_results = {}
@@ -115,7 +115,7 @@ class StructuredOutputEvaluator(LLMEvaluator):
         }
 
         return EvaluationResult(
-            field_accuracy=average_accuracy,
+            overall_accuracy=average_accuracy,
             field_results=final_field_results,
             details={"num_evaluations": len(evaluation_results)}
         )

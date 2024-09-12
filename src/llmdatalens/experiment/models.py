@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, ConfigDict, validator, field_validator
+from pydantic import BaseModel, Field, ConfigDict, field_validator
 from typing import Dict, Any, List, Union, Optional, Literal
 from datetime import datetime
 from uuid import uuid4
@@ -51,7 +51,7 @@ class FieldResult(BaseModel):
     details: Optional[Dict[str, Any]] = None
 
 class EvaluationResult(BaseModel):
-    field_accuracy: float
+    overall_accuracy: float
     field_results: Dict[str, FieldResult]
     details: Optional[Dict[str, Any]] = None
 

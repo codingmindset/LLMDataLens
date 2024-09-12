@@ -124,9 +124,9 @@ class ExperimentManager:
         for run in data.get("runs", []):
             if "evaluation_result" in run:
                 eval_result = run["evaluation_result"]
-                if "metrics" in eval_result and "field_accuracy" not in eval_result:
+                if "metrics" in eval_result and "overall_accuracy" not in eval_result:
                     # Migrate old format to new format
-                    eval_result["field_accuracy"] = eval_result["metrics"].get("OverallAccuracy", 0.0)
+                    eval_result["overall_accuracy"] = eval_result["metrics"].get("OverallAccuracy", 0.0)
                     eval_result["field_results"] = {}
                     eval_result["details"] = eval_result.get("details", {})
                     eval_result.pop("metrics", None)
